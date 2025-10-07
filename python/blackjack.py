@@ -5,6 +5,7 @@ import random
 #carta = (("J"), ("paus"))
 
 
+
 def to_str(jogo):
     saida = ""
     saida += ("jogador 1: " + str(get_pontuacao(jogo[2])) + " pontos\nCartas: " + printa_cartas(jogo[2]))
@@ -18,7 +19,7 @@ def printa_cartas(cartas):
     return saida
 
 def prepara_jogo():
-    jogo = [novo_baralho(), set(), set()]
+    jogo = [novo_baralho(), [], []]
     jogo = jogada(jogo, 1)
     jogo = jogada(jogo, 1)
     jogo = jogada(jogo, 2)
@@ -56,9 +57,9 @@ def jogada(jogo, jogador):
     else:
         return [novo_baralho, jogo[1], cartas_jog]
 def puxar_carta(baralho, cartasJog):
-    carta = random.choice(list(baralho))   
-    novo_baralho = {item for item in baralho if item != carta}
-    novas_cartasJog = {item for item in cartasJog}.union({carta})
+    carta = random.choice(baralho)   
+    novo_baralho = [item for item in baralho if item != carta]
+    novas_cartasJog = [item for item in cartasJog] + [carta]
 
     return (novo_baralho, novas_cartasJog)
     
@@ -69,10 +70,10 @@ def novo_baralho():
     valores = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
     naipes = ["paus", "copas", "espada", "ouro"]
 
-    cartas = set()
+    cartas = []
     for i in naipes:
         for j in valores:
-            cartas.add((j, i)) 
+            cartas.append((j, i)) 
     return cartas
 
 
