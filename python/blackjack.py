@@ -8,12 +8,13 @@ import random
 def to_str(jogo):
     saida = ""
     saida += ("jogador 1: " + str(get_pontuacao(jogo[2])) + " pontos\nCartas: " + printa_cartas(jogo[2]))
-    saida += ("\ndealer: " + str(get_pontuacao(jogo[1])) + "pontos\nCartas: " + printa_cartas(jogo[1])) 
+    saida += ("\ndealer: " + str(get_pontuacao(jogo[1])) + " pontos\nCartas: " + printa_cartas(jogo[1])) 
+    return saida
 
 def printa_cartas(cartas):
     saida = ""
     for carta in cartas:
-        saida += carta[0] + " de " + carta[1] + " , "
+        saida += carta[0] + " de " + carta[1] + ", "
     return saida
 
 def prepara_jogo():
