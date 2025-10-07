@@ -1,8 +1,8 @@
 import blackjack as bj
 
 def main():
-    pontos = (0, 0)
-    baralho = bj.novo_baralho()
+    jogo = bj.prepara_jogo()
+    print(bj.to_str(jogo))
 
 
-
+main()
