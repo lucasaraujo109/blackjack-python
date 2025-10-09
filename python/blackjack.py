@@ -1,15 +1,29 @@
 import random
 
 
-#jogo = [{baralho}, {cartasDealer}, {cartasJog}]
+#jogo = [{baralho}, {cartasDealer}, {cartasJog}, virouCarta]
 #carta = (("J"), ("paus"))
 
 
 
+def virou_jogo(jogo):
+    return [jogo[0], jogo[1], jogo[2], True]
+
+def printa_jogador(jogador, mao, mostrar_primeira):
+    if mostrar_primeira == True:
+        saida = (jogador + ": " + str(get_pontuacao(mao)) + " pontos\nCartas: " + printa_cartas(mao))
+    else:
+        mao_em_jogo = mao[1:]
+        saida = jogador + ": " + str(get_pontuacao(mao_em_jogo)) + " pontos\nCartas: " +  "carta virada, " + printa_cartas(mao_em_jogo)
+
+    return saida
+
 def to_str(jogo):
     saida = ""
-    saida += ("jogador 1: " + str(get_pontuacao(jogo[2])) + " pontos\nCartas: " + printa_cartas(jogo[2]))
-    saida += ("\ndealer: " + str(get_pontuacao(jogo[1])) + " pontos\nCartas: " + printa_cartas(jogo[1])) 
+    saida += printa_jogador("dealer", jogo[1], jogo[3])
+    
+    saida += printa_jogador("\njogador 1", jogo[2], True)
+
     return saida
 
 def printa_cartas(cartas):
@@ -19,7 +33,7 @@ def printa_cartas(cartas):
     return saida
 
 def prepara_jogo():
-    jogo = [novo_baralho(), [], []]
+    jogo = [novo_baralho(), [], [], False]
     jogo = jogada(jogo, 1)
     jogo = jogada(jogo, 1)
     jogo = jogada(jogo, 2)
@@ -53,9 +67,9 @@ def jogada(jogo, jogador):
     novo_baralho, cartas_jog = puxar_carta(jogo[0], jogo[jogador])
 
     if jogador == 1:
-        return [novo_baralho, cartas_jog, jogo[2]]
+        return [novo_baralho, cartas_jog, jogo[2], jogo[3]]
     else:
-        return [novo_baralho, jogo[1], cartas_jog]
+        return [novo_baralho, jogo[1], cartas_jog, jogo[3]]
 def puxar_carta(baralho, cartasJog):
     carta = random.choice(baralho)   
     novo_baralho = [item for item in baralho if item != carta]

@@ -17,6 +17,7 @@ def main():
                     print("voce perdeu")
                     break
             elif jogada == "stand":
+                jogo = bj.virou_jogo(jogo)
                 while bj.get_pontuacao(jogo[1]) <= 16:
                     jogo = bj.jogada(jogo, 1)
                     if bj.get_pontuacao(jogo[1]) > 21:
