@@ -4,6 +4,12 @@ import random
 #jogo = [{baralho}, {cartasDealer}, {cartasJog}, virouCarta]
 #carta = (("J"), ("paus"))
 
+def desenha_cartas(mao):
+    espacamento = 4
+    for i in range(len(mao)):
+        linha += " _____ " + espacamento * " "
+    for i in range(len(mao)):
+
 
 
 def virou_jogo(jogo):
